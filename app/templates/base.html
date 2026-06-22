@@ -9,13 +9,32 @@
 <body>
 
 <header class="topbar">
-    <div class="logo">ERP-Modul Gruppe 04</div>
+    <div class="topbar-left">
+        <div class="logo">ERP-Modul Gruppe 04</div>
 
+        {% if current_username %}
+            <div class="user-meta">
+                {{ current_username }} | {{ current_role }} | Level {{ current_security_level }}
+            </div>
+        {% endif %}
+    </div>
+
+    {% if current_username %}
     <nav>
-    <a href="{{ url_for('goods_receipt.goods_receipts') }}">Wareneingang</a>
-    <a href="{{ url_for('supplier_invoice.supplier_invoices') }}">Lieferantenrechnung</a>
-    <a href="{{ url_for('db_status.db_status') }}">DB-Status</a>
+        <a href="{{ url_for('dashboard.dashboard') }}">Dashboard</a>
+
+        {% if can_view_goods_receipts %}
+            <a href="{{ url_for('goods_receipt.goods_receipts') }}">Wareneingang</a>
+        {% endif %}
+
+        {% if can_view_admin_pages %}
+            <a href="{{ url_for('supplier_invoice.supplier_invoices') }}">Lieferantenrechnung</a>
+            <a href="{{ url_for('db_status.db_status') }}">DB-Status</a>
+        {% endif %}
+
+        <a href="{{ url_for('auth.logout') }}">Logout</a>
     </nav>
+    {% endif %}
 </header>
 
 <main class="content">

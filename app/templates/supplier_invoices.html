@@ -105,7 +105,7 @@
                 {% if invoice.INVOICE_STATUS == 300 %}
                     <form method="POST" action="{{ url_for('supplier_invoice.transmit_invoice', invoice_id=invoice.INVOICE_ID) }}">
                         <button class="small-button" type="submit">
-                            An Buchhaltung übermitteln
+                            Rechnung übermitteln
                         </button>
                     </form>
                 {% else %}

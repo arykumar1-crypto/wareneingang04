@@ -18,19 +18,36 @@ body {
     align-items: center;
 }
 
+.topbar-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
 .logo {
     font-weight: bold;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 nav a {
     color: white;
     text-decoration: none;
-    margin-left: 24px;
     font-weight: 500;
 }
 
 nav a:hover {
     text-decoration: underline;
+}
+
+.user-meta {
+    color: #cbd5e1;
+    font-size: 13px;
 }
 
 .content {
@@ -262,4 +279,71 @@ hr {
     padding: 5px 8px;
     border-radius: 5px;
     font-weight: bold;
+}
+
+.login-card {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    max-width: 420px;
+    margin: 48px auto;
+    padding: 26px;
+}
+
+.login-card h1 {
+    margin-top: 0;
+}
+
+.full-width-button {
+    width: 100%;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.summary-card {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 18px;
+}
+
+.summary-card span {
+    color: #666;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.summary-card strong {
+    display: block;
+    font-size: 28px;
+}
+
+.dashboard-actions {
+    margin-top: 22px;
+}
+
+.action-link {
+    display: inline-block;
+    text-decoration: none;
+}
+
+@media (max-width: 760px) {
+    .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .content {
+        padding: 20px;
+    }
 }
