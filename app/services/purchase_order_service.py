@@ -112,20 +112,7 @@ def _fetch_purchase_orders_from_db():
 
 
 def _fetch_purchase_order_items_from_db(po_id):
-    queries = [
-        """
-            SELECT
-                PO_ID,
-                PO_ITEM_ID,
-                COMPONENT_ID,
-                ARTICLE,
-                ORDERED_QTY,
-                PO_ITEM_STATUS
-            FROM list_views.V_LIST_PO_ITEM_FOR_GOODS_RECEIPT
-            WHERE PO_ID = ?
-              AND ORDERED_QTY > 0
-            ORDER BY PO_ITEM_ID
-        """,
+    queries = [   
         """
             SELECT
                 po_item.PO_ID,
@@ -138,9 +125,23 @@ def _fetch_purchase_order_items_from_db(po_id):
             LEFT JOIN dbo.T_BIKE_COMPONENTS component
                 ON component.COMPONENT_ID = po_item.ID_COMPONENT
             WHERE po_item.PO_ID = ?
-              AND po_item.QUANTITY > 0
+            
             ORDER BY po_item.PO_ITEM_ID
         """,
+        """
+            SELECT
+                PO_ID,
+                PO_ITEM_ID,
+                COMPONENT_ID,
+                ARTICLE,
+                ORDERED_QTY,
+                PO_ITEM_STATUS
+            FROM list_views.V_LIST_PO_ITEM_FOR_GOODS_RECEIPT
+            WHERE PO_ID = ?
+             
+            ORDER BY PO_ITEM_ID
+        """
+        
     ]
 
     last_error = None
@@ -173,7 +174,7 @@ def _fetch_purchase_order_item_from_db(po_id, po_item_id):
             FROM list_views.V_LIST_PO_ITEM_FOR_GOODS_RECEIPT
             WHERE PO_ID = ?
               AND PO_ITEM_ID = ?
-              AND ORDERED_QTY > 0
+              
         """,
         """
             SELECT
@@ -188,7 +189,7 @@ def _fetch_purchase_order_item_from_db(po_id, po_item_id):
                 ON component.COMPONENT_ID = po_item.ID_COMPONENT
             WHERE po_item.PO_ID = ?
               AND po_item.PO_ITEM_ID = ?
-              AND po_item.QUANTITY > 0
+              
         """,
     ]
 
